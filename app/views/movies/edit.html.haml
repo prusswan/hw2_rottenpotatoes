@@ -3,5 +3,5 @@
 = render :partial => "edit_form"
 
 %ul#page_nav
-  %li= link_to 'Cancel', @movie
-  %li= link_to 'Back to list of movies', movies_path
+  %li= link_to "Cancel and back to #{@movie.name}", @movie
+  %li= link_to "Cancel and go Back to list of movies", movies_path

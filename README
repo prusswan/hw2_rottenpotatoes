@@ -45,10 +45,14 @@ of RottenPotatoes was created with Rails 3.0.5 and Ruby 1.8.7 using the
 commands:
 
 * <tt>rails new rottenpotatoes -J -T</tt>
-* <tt>rails generate resource movie title:string rating:string released_on:datetime</tt>
+* <tt>cd rottenpotatoes</tt>
+* <tt>rails generate resource movie title:string rating:string description:text released_on:datetime</tt>
+* <tt>rake db:migrate</tt>
 * <tt>rails generate cucumber:install</tt>
+* <tt>rails generate rspec:install</tt>
+* <tt>rm public/index.html</tt>
 
-
+and then filling in the basic code for the Movie model, views and controller.
 
 1. At the command prompt, create a new Rails application:
        <tt>rails new myapp</tt> (where <tt>myapp</tt> is the application name)
