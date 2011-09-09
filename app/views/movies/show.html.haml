@@ -1,0 +1,10 @@
+%h2= @movie.title
+
+%p 
+  Released on #{@movie.release_date}. Rated #{@movie.rating}.
+  = simple_format(@movie.description)
+
+%ul#page_nav
+  %li= link_to 'Edit', edit_movie_path(@movie)
+  %li= link_to 'Delete', movie_path(@movie), :method => :delete, :confirm => "Really delete #{@movie.title}?"
+  %li= link_to 'Back to list of movies', movies_path

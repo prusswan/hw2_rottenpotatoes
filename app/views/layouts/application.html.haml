@@ -1,0 +1,14 @@
+!!! Strict
+%html{'xmlns' => 'http://www.w3.org/1999/xhtml', 'xml:lang' => 'en', 'lang' => 'en'}
+  %head
+    %title Rotten Potatoes!
+    = stylesheet_link_tag 'general'
+
+  %body
+    %h1= link_to 'Rotten Potatoes!', movies_path
+    #body
+      - if flash[:notice] 
+        #flash_notice= flash[:notice]
+      - elsif flash[:error]
+        #flash_error= flash[:error]
+      = yield

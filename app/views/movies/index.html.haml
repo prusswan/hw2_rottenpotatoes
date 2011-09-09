@@ -1,0 +1,20 @@
+%h2 All Movies
+
+%table#movies{:summary => 'List of all the movies.'}
+  %thead
+    %tr
+      %th Movie Title
+      %th Rating
+      %th Release Date
+      %th More Info
+  %tbody
+    - @movies.each_with_index do |movie,count|
+      %tr{:class => oddness(count)}
+        %td= movie.title 
+        %td= movie.rating
+        %td= movie.release_date
+        %td= link_to 'More about #{movie.title}', movie
+
+%ul#page_nav
+  %li= link_to 'Add New Movie Manually', new_movie_path
+

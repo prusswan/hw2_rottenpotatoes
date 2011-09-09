@@ -1,0 +1,7 @@
+%h2 Editing #{@movie.title}
+
+= render :partial => "edit_form"
+
+%ul#page_nav
+  %li= link_to 'Cancel', @movie
+  %li= link_to 'Back to list of movies', movies_path

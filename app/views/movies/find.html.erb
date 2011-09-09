@@ -1,0 +1,32 @@
+<h2>Select Movie</h2>
+
+
+<table id="movies" summary="List of all the movies.">
+    <tr>
+      <th>Select</th>
+      <th>Movie Title</th>
+      <th>Rating</th>
+      <th>Release Date</th>
+    </tr>
+  <% @movies.each do |movie| %>
+    <tr>
+      <td>
+        <% form_for(movie) do |f| %>
+          <%= f.hidden_field :title %>
+          <%= f.hidden_field :description %>
+          <%= f.hidden_field :released_on %>
+          <%= f.hidden_field :rating %>
+          <%= f.submit "Select" %>
+        <% end %>
+      </td>
+      <td><%= movie.title %></td>
+      <td><%= movie.rating %></td>
+      <td><%= movie.release_date %></td>
+    </tr>
+  <% end %>
+</table>
+
+<ul id="page_nav">
+  <li>Not what you're looking for? <%= link_to "Search Again!", new_movie_path %></li>
+  <li>Return to <%= link_to "Movies", movies_path %></li>
+</ul>
