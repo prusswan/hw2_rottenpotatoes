@@ -1,7 +1,7 @@
 %h2= @movie.title
 
 %p 
-  Released on #{@movie.release_date}. Rated #{@movie.rating}.
+  Released on #{@movie.release_date.to_formatted_s}. Rated #{@movie.rating}.
   = simple_format(@movie.description)
 
 %ul#page_nav

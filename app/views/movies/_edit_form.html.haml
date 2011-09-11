@@ -8,8 +8,8 @@
         = f.label :rating, "Movie Rating:" 
         = f.select :rating, options_for_select(Movie.ratings, @movie.rating) 
       %li
-        = f.label :released_on, "Release Date:" 
-        = f.date_select :released_on, :start_year => 1939 
+        = f.label :release_date, "Release Date:" 
+        = f.date_select :release_date, :start_year => 1939 
       %li
         = f.label :description, "Movie Description:" 
         = f.text_area :description, :rows => 10 
