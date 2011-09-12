@@ -1,11 +1,9 @@
-ActionController::Routing::Routes.draw do |map|
-
+Rottenpotatoes::Application.routes.draw do
   # create RESTful routes for the Movie resource.
-  map.resources :movies
+  resources :movies
 
   # The root of the site ('/') is an alias for 'list all movies'.
-  map.root :movies
+  root :to => 'movies#index'
 
   # See how all your routes lay out with "rake routes"
-
 end
