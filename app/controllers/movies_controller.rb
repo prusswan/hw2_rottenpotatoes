@@ -3,7 +3,10 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.find(:all, :order => 'release_date')
   end
-  
+
+  def search_tmdb
+  end
+
   def new
     @movie = Movie.new
   end
