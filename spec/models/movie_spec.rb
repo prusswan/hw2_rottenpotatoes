@@ -8,8 +8,16 @@ describe Movie do
         Movie.find_in_tmdb('Inception')
       end
     end
+    context 'with no API key' do
+      it 'should raise an InvalidKeyError' do
+        Movie.stub(:api_key).and_return('')
+        lambda { Movie.find_in_tmdb('Inception') }.
+          should raise_error(Movie::InvalidKeyError)
+      end
+    end
     context 'with invalid API key' do
-      it 'should raise an error with a 404 in the message' do
+      it 'should raise an InvalidKeyError' do
+        TmdbMovie.stub(:find).and_raise(RuntimeError.new('API returned code 404'))
         lambda { Movie.find_in_tmdb('Inception') }.
           should raise_error(Movie::InvalidKeyError)
       end
