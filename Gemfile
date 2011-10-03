@@ -7,6 +7,7 @@ gem 'rails', '3.1'
 
 gem 'sqlite3', '~> 1.3.3'
 gem 'haml'
+gem 'ruby-tmdb'
 
 group :test, :development do
   gem 'capybara'
