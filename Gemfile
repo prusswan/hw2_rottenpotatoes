@@ -14,6 +14,7 @@ group :test, :development do
   gem 'cucumber-rails'
   gem 'rspec-rails'
   gem 'ruby-debug'
+  gem 'rcov'
 end
 
 # Bundle the extra gems:

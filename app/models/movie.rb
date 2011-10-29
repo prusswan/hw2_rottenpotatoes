@@ -12,7 +12,6 @@ class Movie < ActiveRecord::Base
       TmdbMovie.find(:title => string)
     rescue ArgumentError => tmdb_error
       raise Movie::InvalidKeyError, tmdb_error.message
-    end      
     rescue RuntimeError => tmdb_error
       raise Movie::InvalidKeyError, tmdb_error.message
     end      
