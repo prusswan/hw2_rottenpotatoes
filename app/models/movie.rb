@@ -10,10 +10,12 @@ class Movie < ActiveRecord::Base
     Tmdb.api_key = self.api_key
     begin
       TmdbMovie.find(:title => string)
-    rescue ArgumentError, RuntimeError
-      raise Movie::InvalidKeyError
+    rescue ArgumentError => tmdb_error
+      raise Movie::InvalidKeyError, tmdb_error.message
+    end      
+    rescue RuntimeError => tmdb_error
+      raise Movie::InvalidKeyError, tmdb_error.message
     end      
   end
 
-  # rest of file elided for brevity
 end
