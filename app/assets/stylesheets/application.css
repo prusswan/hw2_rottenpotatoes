@@ -5,3 +5,26 @@
  *= require_self
  *= require_tree . 
 */
+
+html {
+	font-family: Verdana,Helvetica,sans-serif;
+	color: navy;
+}
+
+body {
+	background-color: silver;
+}
+
+h1, h2 {
+	background-color: #ddd;
+	margin: 0;
+}
+form {
+	padding: 1em;
+	border-style: inset;
+}
+form label {
+	display: block;
+	color: #333;
+	font-style: italic;
+}

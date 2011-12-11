@@ -6,17 +6,20 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
-  # in movies_controller.rb
-  def create
-    Movie.create!(params[:movie])
-    redirect_to movies_path
-  end
   def index
     @movies = Movie.all
   end
+
   def new
+    # default: render 'new' template
   end
-  # in movies_controller.rb
+
+  def create
+    @movie = Movie.new(params[:movie])
+    @movie.save!
+    flash[:notice] = "#{@movie.title} was successfully created."
+    redirect_to movies_path
+  end
 
   def edit
     @movie = Movie.find params[:id]
@@ -25,9 +28,8 @@ class MoviesController < ApplicationController
   def update
     @movie = Movie.find params[:id]
     @movie.update_attributes!(params[:movie])
+    flash[:notice] = "#{@movie.title} was successfully updated."
     redirect_to movie_path(@movie)
   end
-  
-
 
 end
