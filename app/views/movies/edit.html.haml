@@ -1,7 +1,7 @@
-%h2 Editing #{@movie.title}
+-# edit.html.haml using partial
 
-= render :partial => "edit_form"
+%h1 Edit Existing Movie
 
-%ul#page_nav
-  %li= link_to "Cancel and back to #{@movie.name}", @movie
-  %li= link_to "Cancel and go Back to list of movies", movies_path
+= form_tag movie_path(@movie), :method => :put do
+  = render :partial => 'movie_form'
+  = submit_tag 'Update Movie Info'

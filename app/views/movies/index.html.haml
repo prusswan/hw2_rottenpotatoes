@@ -1,6 +1,7 @@
-%h2 All Movies
+-#  This file is app/views/movies/index.html.haml
+%h1 All Movies
 
-%table#movies{:summary => 'List of all the movies.'}
+%table#movies
   %thead
     %tr
       %th Movie Title
@@ -8,13 +9,9 @@
       %th Release Date
       %th More Info
   %tbody
-    - @movies.each_with_index do |movie,count|
-      %tr{:class => oddness(count)}
+    - @movies.each do |movie|
+      %tr
         %td= movie.title 
         %td= movie.rating
         %td= movie.release_date
-        %td= link_to 'More about #{movie.title}', movie
-
-%ul#page_nav
-  %li= link_to 'Add New Movie Manually', new_movie_path
-
+        %td= link_to "More about #{movie.title}", movie

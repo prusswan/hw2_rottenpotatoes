@@ -1,53 +1,33 @@
 class MoviesController < ApplicationController
 
-  def index
-    @movies = Movie.find(:all, :order => 'release_date')
-  end
-
-  def search_tmdb
-    @movies = Movie.find_in_tmdb(params[:search_terms])
-  end
-
-  def new
-    @movie = Movie.new
-  end
-  
-  def create
-    @movie = Movie.new(params[:movie])
-    if @movie.save
-      flash[:notice] = "#{@movie.title} added to Rotten Potatoes!"
-      redirect_to movie_path(@movie)
-    else
-      render :action => "new"
-    end
-  end
-  
   def show
-    @movie = Movie.find(params[:id])
+    id = params[:id] # retrieve movie ID from URI route
+    @movie = Movie.find(id) # look up movie by unique ID
+    # will render app/views/movies/show.<extension> by default
   end
-  
+
+  # in movies_controller.rb
+  def create
+    Movie.create!(params[:movie])
+    redirect_to movies_path
+  end
+  def index
+    @movies = Movie.all
+  end
+  def new
+  end
+  # in movies_controller.rb
+
   def edit
-    @movie = Movie.find(params[:id])
+    @movie = Movie.find params[:id]
   end
-  
+
   def update
-    @movie = Movie.find(params[:id])
-    if @movie.update_attributes(params[:movie])
-      flash[:notice] = "#{@movie.title} has been updated!"
-      redirect_to movie_path(@movie)
-    else
-      render :action => "edit"
-    end
+    @movie = Movie.find params[:id]
+    @movie.update_attributes!(params[:movie])
+    redirect_to movie_path(@movie)
   end
   
-  def destroy
-    @movie = Movie.find(params[:id])
-    if @movie.destroy
-      flash[:notice] = "#{@movie.title} has been deleted!"
-    else
-      flash[:error] = "Failed to delete #{@movie.title}!"
-    end
-    redirect_to(movies_url)
-  end
+
 
 end

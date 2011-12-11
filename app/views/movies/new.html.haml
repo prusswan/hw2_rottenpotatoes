@@ -1,6 +1,6 @@
-%h2 Add New Movie
+%h1 Create New Movie
 
-= render :partial => "edit_form"
+= form_tag movies_path do
 
-%ul#page_nav
-  %li= link_to "Cancel and go back to list of movies", movies_path
+  = render :partial => 'movie_form'
+  = submit_tag 'Save Changes'
