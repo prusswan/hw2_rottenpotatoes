@@ -19,12 +19,10 @@ h1, h2 {
 	background-color: #ddd;
 	margin: 0;
 }
-form {
-	padding: 1em;
-	border-style: inset;
-}
 form label {
 	display: block;
 	color: #333;
 	font-style: italic;
+        padding-top: 1ex;
+        padding-left: 1ex;
 }
