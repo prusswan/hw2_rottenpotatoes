@@ -5,10 +5,9 @@
     = stylesheet_link_tag 'general'
 
   %body
-    %h1= link_to 'Rotten Potatoes!', movies_path
-    #body
-      - if flash[:notice] 
-        #flash_notice= flash[:notice]
-      - elsif flash[:error]
-        #flash_error= flash[:error]
-      = yield
+    - if flash[:notice]
+      #notice.message= flash[:notice]
+    - elsif flash[:warning]
+      #warning.message= flash[:warning]
+
+    = yield
