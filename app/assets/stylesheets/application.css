@@ -1,28 +1,61 @@
-/*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
- *= require_self
- *= require_tree . 
-*/
-
-html {
-	font-family: Verdana,Helvetica,sans-serif;
-	color: navy;
+html, body {
+  margin: 0;
+  padding: 0;
+  background: White;
+  color: DarkSlateGrey;
+  font-family: Tahoma, Verdana, sans-serif;
+  font-size: 10pt;
 }
-
-body {
-	background-color: silver;
+div#main {
+  margin: 0;
+  padding: 0 20px 20px;
 }
-
-h1, h2 {
-	background-color: #ddd;
-	margin: 0;
+a {
+  background: transparent;
+  color: maroon;
+  text-decoration: underline;
+  font-weight: bold;
+}
+h1 {
+  color: maroon;
+  font-size: 150%;
+  font-style: italic;
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid DarkSlateGrey;
+}
+h1.title {
+  margin: 0 0 1em;
+  padding: 10px;
+  background-color: orange;
+  color: white;
+  border-bottom: 4px solid gold;
+  font-size: 2em;
+  font-style: normal;
+}
+table#movies {
+  margin: 10px;
+  border-collapse: collapse;
+  width: 100%;
+  border-bottom: 2px solid black;
+}
+table#movies th {
+  border: 2px solid white;
+  font-weight: bold;
+  background-color: wheat;
+}
+table#movies th, table#movies td {
+  padding: 4px;
+  text-align: left;
+}
+#notice #warning {
+  background: rosybrown;
+  margin: 1em 0;
+  padding: 4px;
 }
 form label {
-	display: block;
-	color: #333;
-	font-style: italic;
-        padding-top: 1ex;
-        padding-left: 1ex;
+  display: block;
+  line-height: 25px;
+  font-weight: bold;
+  color: maroon;
 }
