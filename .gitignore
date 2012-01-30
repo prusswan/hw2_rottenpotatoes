@@ -1,0 +1,6 @@
+#*
+*~
+TAGS
+db/schema.rb
+log/
+db/*.sqlite3
