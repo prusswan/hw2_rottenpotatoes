@@ -15,3 +15,5 @@
         #warning.message= flash[:warning]
 
       = yield
+      = debug(params) if Rails.env.development?
+
