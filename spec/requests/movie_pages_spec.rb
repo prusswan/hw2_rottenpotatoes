@@ -24,11 +24,43 @@ describe "MoviePages" do
 
     it { should have_selector('table#movies') }
 
-    it { should have_selector('th', text: 'Movie Title') }
+    it { should have_selector('th a#title_header', text: 'Movie Title') }
+    it { should have_selector('a#release_date_header') }
+
     it { should have_selector('td', text: 'Aladdin') }
     it { should have_selector('td a', text: 'More about Aladdin') }
 
     # it { puts page.body }
+
+    describe "after clicking on 'title' column heading" do
+
+      before(:each) do
+        click_link 'title_header'
+      end
+
+      it { should have_xpath('//tr[1]/td[1]', text: '2001: A Space Odyssey') }
+      it { should have_xpath('//tr[2]/td[1]', text: 'Aladdin') }
+      it { should have_xpath('//tr[3]/td[1]', text: 'Amelie') }
+
+      it { should have_xpath("//th[@class='hilite']/a[@id='title_header']") }
+      it { should_not have_xpath("//th[@class='hilite']/a[@id='release_date_header']") }
+
+    end
+
+    describe "after clicking on 'release_date' column heading" do
+
+      before(:each) do
+        click_link 'release_date_header'
+      end
+
+      it { should have_xpath('//tr[1]/td[1]', text: '2001: A Space Odyssey') }
+      it { should have_xpath('//tr[2]/td[1]', text: 'Raiders of the Lost Ark') }
+      it { should have_xpath('//tr[3]/td[1]', text: 'The Terminator') }
+
+      it { should_not have_xpath("//th[@class='hilite']/a[@id='title_header']") }
+      it { should have_xpath("//th[@class='hilite']/a[@id='release_date_header']") }
+
+    end
 
   end
 

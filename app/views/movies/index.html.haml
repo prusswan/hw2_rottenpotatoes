@@ -4,16 +4,19 @@
 %table#movies
   %thead
     %tr
-      %th Movie Title
+      - highlight_title_heading = "hilite" if !params[:sort_order].nil? and 'by_title' == params[:sort_order]
+      %th{class: highlight_title_heading}= link_to "Movie Title", movies_path(sort_order: :by_title), id: 'title_header'
       %th Rating
-      %th Release Date
+      - highlight_release_date_heading = "hilite" if !params[:sort_order].nil? and 'by_release_date' == params[:sort_order]
+      %th{class: highlight_release_date_heading}= link_to "Release Date", movies_path(sort_order: :by_release_date), id: 'release_date_header'
       %th More Info
   %tbody
     - @movies.each do |movie|
       %tr
-        %td= movie.title 
+        %td= movie.title
         %td= movie.rating
         %td= movie.release_date
         %td= link_to "More about #{movie.title}", movie_path(movie)
 
 = link_to 'Add new movie', new_movie_path
+
