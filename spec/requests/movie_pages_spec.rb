@@ -62,6 +62,31 @@ describe "MoviePages" do
 
     end
 
+    describe "rating checkboxes" do
+
+      it { should have_selector('input#ratings_G') }
+      it { should have_selector('input#ratings_PG') }
+      it { should have_selector('input#ratings_PG-13') }
+      it { should have_selector('input#ratings_R') }
+
+
+      describe "after filtering by rating: 'G'" do
+
+        before(:each) do
+          check 'ratings[G]'
+          click_button 'Refresh'
+        end
+
+        it { puts page.body }
+
+        it { should_not have_xpath("//td[text()='PG']") }
+        it { should_not have_xpath("//td[text()='PG-13']") }
+        it { should_not have_xpath("//td[text()='R']") }
+
+      end
+
+    end
+
   end
 
 end
