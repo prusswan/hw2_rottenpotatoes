@@ -62,26 +62,55 @@ describe "MoviePages" do
 
     end
 
-    describe "rating checkboxes" do
+    describe "rating filtering" do
 
       it { should have_selector('input#ratings_G') }
       it { should have_selector('input#ratings_PG') }
       it { should have_selector('input#ratings_PG-13') }
       it { should have_selector('input#ratings_R') }
 
+      it { should have_selector('input#ratings_submit') }
 
-      describe "after filtering by rating: 'G'" do
+      describe "after filtering by rating: 'R'" do
 
         before(:each) do
-          check 'ratings[G]'
+          check 'ratings[R]'
           click_button 'Refresh'
         end
 
-        it { puts page.body }
-
         it { should_not have_xpath("//td[text()='PG']") }
         it { should_not have_xpath("//td[text()='PG-13']") }
-        it { should_not have_xpath("//td[text()='R']") }
+        it { should_not have_xpath("//td[text()='G']") }
+
+        it { should have_selector("input#ratings_R[checked='checked']") }
+
+        #it { puts page.body }
+
+        describe "sorting by title" do
+
+          before(:each) do
+            click_link 'title_header'
+          end
+
+          it { should have_xpath('//tr[1]/td[1]', text: 'Amelie') }
+
+          it { should have_selector("input#ratings_R[checked='checked']") }
+          it { should have_selector("table tbody tr", count: 3) }
+
+        end
+
+        describe "sorting by release_date" do
+
+          before(:each) do
+            click_link 'release_date_header'
+          end
+
+          it { should have_xpath('//tr[1]/td[1]', text: 'The Terminator') }
+
+          it { should have_selector("input#ratings_R[checked='checked']") }
+          it { should have_selector("table tbody tr", count: 3) }
+
+        end
 
       end
 

@@ -24,6 +24,12 @@ class MoviesController < ApplicationController
     @movies = query_base.all
 
     @all_ratings = Movie.all_ratings
+
+    if !params[:ratings].nil?
+      @selected_ratings = params[:ratings]
+    else
+      @selected_ratings = {}
+    end
   end
 
   def new
