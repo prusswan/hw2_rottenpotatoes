@@ -11,11 +11,11 @@
 %table#movies
   %thead
     %tr
-      - highlight_title_heading = "hilite" if !params[:sort_order].nil? and 'by_title' == params[:sort_order]
-      %th{class: highlight_title_heading}= link_to "Movie Title", movies_path(sort_order: :by_title, ratings: @selected_ratings), id: 'title_header'
+      - highlight_title_heading = "hilite" if !params[:sort_order].nil? and 'title' == params[:sort_order]
+      %th{class: highlight_title_heading}= link_to "Movie Title", movies_path(sort_order: :title, ratings: @selected_ratings), id: 'title_header'
       %th Rating
-      - highlight_release_date_heading = "hilite" if !params[:sort_order].nil? and 'by_release_date' == params[:sort_order]
-      %th{class: highlight_release_date_heading}= link_to "Release Date", movies_path(sort_order: :by_release_date, ratings: @selected_ratings), id: 'release_date_header'
+      - highlight_release_date_heading = "hilite" if !params[:sort_order].nil? and 'release_date' == params[:sort_order]
+      %th{class: highlight_release_date_heading}= link_to "Release Date", movies_path(sort_order: :release_date, ratings: @selected_ratings), id: 'release_date_header'
       %th More Info
   %tbody
     - @movies.each do |movie|

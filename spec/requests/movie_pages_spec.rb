@@ -84,8 +84,6 @@ describe "MoviePages" do
 
         it { should have_selector("input#ratings_R[checked='checked']") }
 
-        #it { puts page.body }
-
         describe "sorting by title" do
 
           before(:each) do
@@ -109,6 +107,22 @@ describe "MoviePages" do
 
           it { should have_selector("input#ratings_R[checked='checked']") }
           it { should have_selector("table tbody tr", count: 3) }
+
+          describe "visit movie info page and return to movie list" do
+
+            before(:each) do
+              click_link 'More about The Terminator'
+              click_link 'Back to movie list'
+            end
+
+            it { puts page.body }
+
+            it { should have_xpath('//tr[1]/td[1]', text: 'The Terminator') }
+
+            it { should have_selector("input#ratings_R[checked='checked']") }
+            it { should have_selector("table tbody tr", count: 3) }
+
+          end
 
         end
 

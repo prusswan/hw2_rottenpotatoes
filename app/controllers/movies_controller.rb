@@ -7,26 +7,25 @@ class MoviesController < ApplicationController
   end
 
   def index
+
     query_base = Movie
 
-    if !params[:ratings].nil?
-      query_base = query_base.scoped(:conditions => { :rating => params[:ratings].keys })
+    session[:ratings] = params[:ratings] if params[:ratings]
+    if session[:ratings]
+      query_base = query_base.scoped(:conditions => { :rating => session[:ratings].keys })
     end
 
-    if !params[:sort_order].nil?
-      if 'by_title' == params[:sort_order]
-        query_base = query_base.scoped(:order => :title)
-      elsif 'by_release_date' == params[:sort_order]
-        query_base = query_base.scoped(:order => :release_date)
-      end
+    session[:sort_order] = params[:sort_order] if params[:sort_order]
+    if session[:sort_order]
+      query_base = query_base.scoped(:order => session[:sort_order])
     end
 
     @movies = query_base.all
 
     @all_ratings = Movie.all_ratings
 
-    if !params[:ratings].nil?
-      @selected_ratings = params[:ratings]
+    if session[:ratings]
+      @selected_ratings = session[:ratings]
     else
       @selected_ratings = {}
     end
