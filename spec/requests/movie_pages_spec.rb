@@ -115,12 +115,17 @@ describe "MoviePages" do
               click_link 'Back to movie list'
             end
 
-            it { puts page.body }
-
             it { should have_xpath('//tr[1]/td[1]', text: 'The Terminator') }
 
             it { should have_selector("input#ratings_R[checked='checked']") }
             it { should have_selector("table tbody tr", count: 3) }
+
+            #it { puts page.body }
+            #it { puts current_url }
+
+            it "should be redirected to RESTful route" do
+              current_url.should =~ /movies\?ratings\[R\]=1&sort_order=release_date/
+            end
 
           end
 
