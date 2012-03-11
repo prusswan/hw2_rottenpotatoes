@@ -7,17 +7,21 @@ class MoviesController < ApplicationController
   end
 
   def index
-    if params[:sort_order].nil?
-      if params[:ratings].nil?
-        @movies = Movie.all
-      else
-        @movies = Movie.find(:all, :conditions => { :rating => params[:ratings].keys })
-      end
-    elsif 'by_title' == params[:sort_order]
-      @movies = Movie.find(:all, :order => :title)
-    elsif 'by_release_date' == params[:sort_order]
-      @movies = Movie.find(:all, :order => :release_date)
+    query_base = Movie
+
+    if !params[:ratings].nil?
+      query_base = query_base.scoped(:conditions => { :rating => params[:ratings].keys })
     end
+
+    if !params[:sort_order].nil?
+      if 'by_title' == params[:sort_order]
+        query_base = query_base.scoped(:order => :title)
+      elsif 'by_release_date' == params[:sort_order]
+        query_base = query_base.scoped(:order => :release_date)
+      end
+    end
+
+    @movies = query_base.all
 
     @all_ratings = Movie.all_ratings
   end
